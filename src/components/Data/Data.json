@@ -1,0 +1,101 @@
+{
+    "about": {
+        "id": 1,
+        "content": [
+            "Hi! I’m Shahabas Abdul Hameed, a full-stack web developer with a passion for coding and technology. Currently, I’m pursuing a BCA in software development and web design at Srinivas University in Mangalore.",
+            "I specialize in both front-end and back-end development and enjoy transforming ideas into functional, user-friendly web applications. Always eager to learn, I stay up to date with the latest trends and tools to improve my skills and approach to development.",
+            "In addition to my technical expertise, I focus on creating seamless user experiences and enjoy working on personal projects to explore new concepts and refine my craft."
+        ]
+    },
+    "projects": [
+        {
+            "id": 1,
+            "heading": "Dunite.tech",
+            "desc": "Blog Website",
+            "url": "https://dunite.tech",
+            "hosted": "Hosted in Dunite",
+            "image": "/images/duploader.svg"
+        },
+        {
+            "id": 2,
+            "heading": "SU Dunite.tech",
+            "desc": "Study Material Website",
+            "url": "https://dunite.tech",
+            "hosted": "Hosted in Dunite",
+            "image": "/images/duploader.svg"
+        },
+        {
+            "id": 3,
+            "heading": "Movie Searcher",
+            "desc": "Search movies in your range",
+            "url": "https://s488u.github.io/Movie_API/",
+            "hosted": "Hosted in Dunite",
+            "image": "/images/github.svg"
+        },{
+            "id" : 4,
+            "heading" : "Indian Military",
+            "desc": "Static web with Vanilla CSS",
+            "url": "https://s488u.github.io/airforce/",
+            "hosted": "Hosted in Github",
+            "image": "/images/github.svg"
+        },{
+            "id" : 5,
+            "heading" : "Newsletter",
+            "desc": "Bulk Newsletter sender in PHP",
+            "url": "https://github.com/S488U/newsletter",
+            "hosted": "Hosted in Github",
+            "image": "/images/github.svg"
+        },{
+            "id" : 6,
+            "heading" : "Creaxin API",
+            "desc": "Express JS API",
+            "url": "https://creaxin.vercel.app/",
+            "hosted": "Hosted in Vercel",
+            "image": "/images/vercel.svg"
+        }
+    ],
+    "social": [
+        {
+            "name": "Github",
+            "url": "https://github.com/S488U",
+            "image": "/images/github.svg"
+        },
+        {
+            "name": "LinkedIn",
+            "url": "https://www.linkedin.com/in/shahabasah/",
+            "image": "/images/linkedin.svg"
+        },
+        {
+            "name": "Instagram",
+            "url": "https://www.instagram.com/shahabas.ah/",
+            "image": "/images/instagram.svg"
+        },
+        {
+            "name": "E-Mail",
+            "url": "mailto:shahabassabbu12@gmail.com",
+            "image": "/images/mail.svg"
+        }
+    ],
+    "footer" : [
+        {
+            "name": "Github",
+            "url": "https://github.com/S488U",
+            "image": "/images/footer/github-footer.svg"
+        },
+        {
+            "name": "LinkedIn",
+            "url": "https://www.linkedin.com/in/shahabasah/",
+            "image": "/images/footer/linkedin-footer.svg"
+        },
+        {
+            "name": "Instagram",
+            "url": "https://www.instagram.com/shahabas.ah/",
+            "image": "/images/footer/instagram-footer.svg"
+        },
+        {
+            "name": "E-Mail",
+            "url": "mailto:shahabassabbu12@gmail.com",
+            "image": "/images/footer/mail-footer.svg"
+        }
+    ]
+}
