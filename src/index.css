@@ -52,10 +52,3 @@ html {
     font-weight: normal;
     font-style: normal;
 }
-
-@font-face {
-    font-family: 'rustic';
-    src: url("/assets/bright.ttf") format('opentype');
-    font-weight: normal;
-    font-style: normal;
-}

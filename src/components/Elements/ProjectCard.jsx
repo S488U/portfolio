@@ -61,7 +61,7 @@ const ProjectCard = (props) => {
       <div className="w-full h-[170px] rounded-lg flex flex-col justify-center items-start text-lg pl-5"
         style={{ backgroundColor: getRandomMildColor() }}>
         <h1 className="text-4xl font-nature">{props.heading}</h1>
-        <p className="font-bright">{props.desc}</p>
+        <p className="font-nature">{props.desc}</p>
       </div>
       <div className="w-full bg-grey-800 h-[65px] flex flex-row justify-around items-center">
         <div className="flex flex-row gap-2 justify-center items-center">
