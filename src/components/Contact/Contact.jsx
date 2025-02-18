@@ -11,17 +11,17 @@ const Contact = () => {
         message: "",
     });
 
-    const localUrl = "http://localhost:5000/send-email";
+    const localUrl = `${window.location.protocol}//${window.location.hostname}:5000/send-email`;
 
-    const handleChange = (e) => {
+    function handleChange(e) {
         setFormData({ ...formData, [e.target.name]: e.target.value });
-    };
+    }
 
     const formSubmit = async (e) => {
         e.preventDefault();
         
         await toast.promise(
-          fetch("http://localhost:5000/send-email", {
+          fetch(localUrl, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(formData),
@@ -31,9 +31,9 @@ const Contact = () => {
             setFormData({ name: "", email: "", message: "" });
           }),
           {
-            loading: "Sending mail...",
-            success: "Email sent successfully! 🎉",
-            error: "Could not send email. Try again!",
+            loading: "Sending message...",
+            success: "Message sent successfully! 🎉",
+            error: "Could not send message. Try again!",
           }
         );
       };
