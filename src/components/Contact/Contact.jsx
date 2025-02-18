@@ -19,24 +19,24 @@ const Contact = () => {
 
     const formSubmit = async (e) => {
         e.preventDefault();
-        
+
         await toast.promise(
-          fetch(localUrl, {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(formData),
-          }).then(async (res) => {
-            const data = await res.json();
-            if (!data.success) throw new Error("Failed to send email.");
-            setFormData({ name: "", email: "", message: "" });
-          }),
-          {
-            loading: "Sending message...",
-            success: "Message sent successfully! 🎉",
-            error: "Could not send message. Try again!",
-          }
+            fetch(localUrl, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(formData),
+            }).then(async (res) => {
+                const data = await res.json();
+                if (!data.success) throw new Error("Failed to send email.");
+                setFormData({ name: "", email: "", message: "" });
+            }),
+            {
+                loading: "Sending message...",
+                success: "Message sent successfully! 🎉",
+                error: "Could not send message. Try again!",
+            }
         );
-      };
+    };
 
     return (
         <div id="contact" className="w-full h-auto md:h-screen flex flex-col justify-around items-center overflow-hidden my-8 p-4 pt-4 mt-12">
