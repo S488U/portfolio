@@ -15,7 +15,7 @@ const Footer = () => {
                 <div className="w-full flex flex-row justify-between items-start">
                     <div className="flex flex-col text-left gap-y-4">
                         <div className="flex flex-col gap-y-2">
-                            <h6 className="text-sm">Social Media:</h6>
+                            <h1 className="text-sm">Social Media:</h1>
                             <div className="flex flex-row gap-x-4">
                                 {Data.footer.map((item, index) => {
                                     return (

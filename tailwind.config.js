@@ -7,8 +7,8 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        gravis: ['gravis', 'sans-serif'],
-        nature: ['nature', 'sans-serif'],
+        // gravis: ['gravis', 'sans-serif'],
+        nature: ['nature', 'Arial', 'sans-serif'],
       },
     },
   },

@@ -39,16 +39,17 @@ html {
     background: #000000;
 }
 
-@font-face {
+/* @font-face {
     font-family: 'gravis';
     src: url("/assets/gravis.ttf") format('truetype');
     font-weight: normal;
     font-style: normal;
-}
+} */
 
 @font-face {
     font-family: 'nature';
     src: url("/assets/nature.ttf") format('truetype');
     font-weight: normal;
     font-style: normal;
+    font-display: swap;
 }
