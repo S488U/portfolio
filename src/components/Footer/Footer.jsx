@@ -20,7 +20,7 @@ const Footer = () => {
                                 {Data.footer.map((item, index) => {
                                     return (
                                         <a key={index} href={item.url} className="cursor-pointer">
-                                            <img src={item.image} alt={item.name} height="20" width="20" />
+                                            <img src={item.image} alt={item.name} height="20" width="20" target="_blank" rel="noopener noreferrer"/>
                                         </a>
                                     )
                                 })}
@@ -33,7 +33,7 @@ const Footer = () => {
                         </div>
                     </div>
                     <div>
-                        <button onClick={scrollToTop} className="py-2 px-3 border border-white rounded-lg hover:scale-110 transition-all">
+                        <button onClick={scrollToTop} className="py-2 px-3 border border-white rounded-lg hover:scale-110 transition-all" aria-label="Scroll to top">
                             <UpArrowIcon size={20} color="white" />
                         </button>
                     </div>

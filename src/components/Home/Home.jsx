@@ -79,6 +79,7 @@ const Home = () => {
           <button
             className="bg-black text-white rounded-full text-lg px-5 py-1 absolute bottom-2 right-2"
             onClick={handleReset}
+            aria-label="Reset the Home screen texts"
           >
             Reset
           </button>
