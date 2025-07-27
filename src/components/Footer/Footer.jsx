@@ -1,3 +1,4 @@
+import { motion } from "framer-motion";
 import Data from "../Data/Data.json";
 import UpArrowIcon from "../Elements/UpArrowIcon";
 
@@ -33,9 +34,9 @@ const Footer = () => {
                         </div>
                     </div>
                     <div>
-                        <button onClick={scrollToTop} className="py-2 px-3 border border-white rounded-lg hover:scale-110 transition-all" aria-label="Scroll to top">
+                        <motion.button onClick={scrollToTop} whileHover={{ scale: 1.1}} whileTap={{ scale: 0.8}} className="py-2 px-3 border border-white rounded-lg " aria-label="Scroll to top">
                             <UpArrowIcon size={20} color="white" />
-                        </button>
+                        </motion.button>
                     </div>
                 </div>
                 <div className="w-full h-[12px] skew-x-12 bg-white"></div>
