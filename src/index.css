@@ -40,15 +40,18 @@ html {
 }
 
 /* @font-face {
-    font-family: 'gravis';
-    src: url("/assets/gravis.ttf") format('truetype');
+    font-family: "gravis";
+    src: url("/assets/gravis.woff2") format("woff2"),
+         url("/assets/gravis.ttf") format("truetype");
     font-weight: normal;
     font-style: normal;
 } */
 
 @font-face {
-    font-family: 'nature';
-    src: url("/assets/nature.ttf") format('truetype');
+    font-family: "nature";
+    src: url("/assets/nature.woff2") format("woff2"),
+         url("/assets/nature.woff") format("woff"),
+         url("/assets/nature.ttf") format("truetype");
     font-weight: normal;
     font-style: normal;
     font-display: swap;
