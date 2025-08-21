@@ -9,7 +9,7 @@
   },
   "projects": [
     {
-      "id": 2,
+      "id": 1,
       "heading": "SIMS",
       "desc": "Smart Inventory Management System",
       "url": "https://github.com/S488U/sims-backend",
@@ -17,7 +17,7 @@
       "image": "/images/vercel.svg"
     },
     {
-      "id": 3,
+      "id": 2,
       "heading": "DumbCLI",
       "desc": "Universal CLI Toolbox",
       "url": "https://github.com/s488U/dumbcli",
@@ -25,7 +25,7 @@
       "image": "/images/github.svg"
     },
     {
-      "id": 4,
+      "id": 3,
       "heading": "Dunite.tech",
       "desc": "Blog Website",
       "url": "https://blog.dunite.tech",
@@ -33,7 +33,7 @@
       "image": "/images/duploader.svg"
     },
     {
-      "id": 5,
+      "id": 4,
       "heading": "SU Dunite.tech",
       "desc": "Study Material Website",
       "url": "https://dunite.tech",
@@ -41,7 +41,7 @@
       "image": "/images/duploader.svg"
     },
     {
-      "id": 6,
+      "id": 5,
       "heading": "Movie Searcher",
       "desc": "Search movies in your range",
       "url": "https://s488u.github.io/Movie_API/",
@@ -49,7 +49,7 @@
       "image": "/images/github.svg"
     },
     {
-      "id": 7,
+      "id": 6,
       "heading": "Indian Military",
       "desc": "Static web with Vanilla CSS",
       "url": "https://s488u.github.io/airforce/",
@@ -57,7 +57,7 @@
       "image": "/images/github.svg"
     },
     {
-      "id": 8,
+      "id": 7,
       "heading": "Newsletter",
       "desc": "Bulk Newsletter sender in PHP",
       "url": "https://github.com/S488U/newsletter",
@@ -65,7 +65,7 @@
       "image": "/images/github.svg"
     },
     {
-      "id": 9,
+      "id": 8,
       "heading": "Creaxin API",
       "desc": "Express JS API",
       "url": "https://creaxin.vercel.app/",
