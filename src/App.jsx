@@ -1,7 +1,8 @@
-import { useState, useEffect } from "react";
-import { lazy, Suspense } from "react";
+import { lazy, Suspense, useEffect } from "react";
 import Navbar from "./components/Navbar/Navbar.jsx";
 import { Toaster } from "react-hot-toast";
+
+import useGpuAvailable from "./hooks/useGpuAvailable.js";
 
 const Home = lazy(() => import("./components/Home/Home.jsx"));
 const About = lazy(() => import("./components/About/About.jsx"));
@@ -23,28 +24,16 @@ const Loader = () => (
   </div>
 );
 
-const checkGpuAvailable = () => {
-  try {
-    const canvas = document.createElement("canvas");
-    const gl =
-      canvas.getContext("webgl") || canvas.getContext("experimental-webgl");
-    return !!gl && gl instanceof WebGLRenderingContext;
-  } catch {
-    return false;
-  }
-};
-
 const App = () => {
-  const [gpuAvailable, setGpuAvailable] = useState(null);
+  const { available, name } = useGpuAvailable();
 
   useEffect(() => {
-    const isAvailable = checkGpuAvailable();
-    setGpuAvailable(isAvailable);
-  }, []);
-
-  if (gpuAvailable === null) {
-    return console.log("No GPU detected");
-  }
+    if (available === true) {
+      console.log("GPU Available:", name);
+    } else if (available === false) {
+      console.log("GPU Available: false\nNo GPU Detected");
+    }
+  }, [available, name]);
 
   return (
     <div>
