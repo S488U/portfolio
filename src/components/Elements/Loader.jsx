@@ -1,5 +1,5 @@
 const Loader = () => (
-  <div className="flex items-center justify-center h-screen">
+  <div className="flex items-center justify-center h-screen" role="status" aria-label="Loading">
     <span className="w-1 h-5 bg-black rounded-lg animate-scaleUp"></span>
     <span
       className="w-1 h-9 mx-1 bg-black rounded-lg animate-scaleUp"
