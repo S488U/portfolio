@@ -9,8 +9,8 @@ const Navbar = () => {
         duration: 0.4,
         scale: { type: "spring", visualDuration: 0.4, bounce: 0.5 },
       }}
-      className='w-full flex justify-center align-center items-center mt-4 bg-transparent fixed z-[9999]'>
-      <nav className='shadow-md flex flex justify-center align-center items-center gap-3 text-lg p-3 border border-[3px] border-solid border-black bg-white rounded-full relative'>
+      className='h-[2.5rem] w-full flex justify-center align-center items-center mt-4 bg-transparent fixed z-[9999]'>
+      <nav className='shadow-md flex justify-center align-center items-center gap-3 text-lg p-3 border-[3px] border-solid border-black bg-white rounded-full relative'>
         <a href="/" className='font-bold'>Portfolio</a>
         <a href="/" className='text-red-500'>/</a>
         <a href="#about" className='text-sm hover:text-green-600'>/About</a>
