@@ -134,18 +134,18 @@ const Contact = () => {
                         <form onSubmit={formSubmit} className="flex flex-col mt-5 gap-y-3 w-[300px] ml-0 md:ml-16">
                             <div className="flex flex-col justify-start items-start form-control">
                                 <label className="text-grey text-sm" htmlFor="name">Enter your name:</label>
-                                <input name="name" id="name" type="text" className="text-black text-lg border-4 border-black focus:outline-none px-3 py-2 w-full" value={formData.name} onChange={handleChange} />
+                                <input name="name" id="name" type="text" className="text-black text-lg border-4 border-black focus:outline-hidden px-3 py-2 w-full" value={formData.name} onChange={handleChange} />
                             </div>
                             <div className="flex flex-col justify-start items-start form-control">
                                 <label className="text-grey text-sm" htmlFor="email">Enter your email:</label>
-                                <input name="email" id="email" type="text" className="text-black text-lg border-4 border-black focus:outline-none px-3 py-2 w-full" value={formData.email} onChange={handleChange} />
+                                <input name="email" id="email" type="text" className="text-black text-lg border-4 border-black focus:outline-hidden px-3 py-2 w-full" value={formData.email} onChange={handleChange} />
                             </div>
                             <div className="flex flex-col justify-start items-start form-control">
                                 <label className="text-grey text-sm" htmlFor="message">Enter your message:</label>
-                                <textarea name="message" id="message" className="text-black text-lg border-4 border-black focus:outline-none px-3 py-2 w-full" value={formData.message} onChange={handleChange}></textarea>
+                                <textarea name="message" id="message" className="text-black text-lg border-4 border-black focus:outline-hidden px-3 py-2 w-full" value={formData.message} onChange={handleChange}></textarea>
                             </div>
                             <div className="flex flex-col justify-start items-start">
-                                <motion.input layout whileHover={{ backgroundColor: "#080808" }} type="submit" value="send" className="font-nature text-white bg-black text-lg border-4 border-black focus:outline-none px-3 py-2 w-full cursor-pointer" aria-label="Send your message" />
+                                <motion.input layout whileHover={{ backgroundColor: "#080808" }} type="submit" value="send" className="font-nature text-white bg-black text-lg border-4 border-black focus:outline-hidden px-3 py-2 w-full cursor-pointer" aria-label="Send your message" />
                             </div>
                         </form>
                     </div>
