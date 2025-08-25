@@ -68,7 +68,7 @@ const Home = () => {
       </motion.h1>
 
       <motion.h1
-        className="font-nature text-3xl cursor-grabbing z-[1]"
+        className="font-nature text-3xl cursor-grabbing z-1"
         drag
         dragConstraints={containerRef}
         onDragEnd={(e, info) => handleDragEnd("h3", info)}
@@ -84,7 +84,7 @@ const Home = () => {
 
       {/* Animated Decorative Triangle */}
       <motion.div
-        className="absolute -z-10 bottom-2 w-0 h-0 border-l-[80px] border-l-transparent border-r-[80px] border-r-transparent border-b-[140px] border-b-black"
+        className="absolute -z-10 bottom-2 w-0 h-0 border-l-80 border-l-transparent border-r-80 border-r-transparent border-b-140 border-b-black"
         animate={{
           rotateY: [0, 10, -10, 0],
           translateY: [0, 5, -5, 0],
