@@ -9,7 +9,7 @@ const Navbar = () => {
         duration: 0.4,
         scale: { type: "spring", visualDuration: 0.4, bounce: 0.5 },
       }}
-      className='h-10 w-full flex justify-center align-center items-center mt-4 bg-transparent fixed z-9999'>
+      className='h-10 w-dvw flex justify-center align-center items-center mt-4 bg-transparent fixed z-9999'>
       <nav className='shadow-md flex justify-center align-center items-center gap-3 text-lg p-3 border-[3px] border-solid border-black bg-white rounded-full relative'>
         <a href="/" className='font-bold'>Portfolio</a>
         <a href="/" className='text-red-500'>/</a>
