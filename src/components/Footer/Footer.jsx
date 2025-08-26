@@ -34,7 +34,7 @@ const Footer = () => {
                         </div>
                     </div>
                     <div>
-                        <motion.button onClick={scrollToTop} whileHover={{ scale: 1.1}} whileTap={{ scale: 0.8}} className="py-2 px-3 border border-white rounded-lg " aria-label="Scroll to top">
+                        <motion.button onClick={scrollToTop} whileHover={{ scale: 1.1}} whileTap={{ scale: 0.8}} className="py-2 px-3 border border-white rounded-lg cursor-pointer" aria-label="Scroll to top">
                             <UpArrowIcon size={20} color="white" />
                         </motion.button>
                     </div>
