@@ -121,7 +121,7 @@ const Contact = () => {
                                     animate={{ opacity: 1, x: 0 }}
                                     transition={{ duration: 0.3, delay: index * 0.1 }}
                                 >
-                                    <img className="object-contain svg object-center" src={item.image} alt="" height="40" width="40" />
+                                    <img className="object-contain" src={item.image} alt={item.name + ' icon'} height="40" width="40" loading="lazy" />
                                     <p>{item.name}</p>
                                 </motion.a>
                             ))}
