@@ -30,3 +30,6 @@ Dockerfile*
 
 # don't track copy files
 *copy*
+
+# Ignore custom cursor for now.
+/public/images/cursor
