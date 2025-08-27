@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { motion } from "framer-motion";
 import TextHeader from "../Elements/TextHeader";
 import ProjectCard from "../Elements/ProjectCard";
 import Data from "../Data/Data.json";
@@ -31,15 +32,21 @@ const Projects = () => {
                         />
                     ))}
                 </div>
-                <div className="flex flex-col justify-center items-center text-center my-12">
-                    <p className="text-sm text-grey mt-3">Not a fan of the card color? Well, guess what – you can change it as many times as you like! 🎨😎 </p>
-                    <button
+                <div className="flex flex-col justify-center items-center text-center ">
+                    <p className="text-sm text-grey mt-3">
+Not a fan of the card color? Well, guess what – you can change it as
+many times as you like! 🎨😎
+</p>
+                    <motion.button
                         onClick={reload}
-                        className="rounded-full bg-black text-white text-sm py-2 px-4 mt-3"
+                        className="rounded-full bg-black text-white text-sm py-2 px-4 mt-3 cursor-pointer"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.85 }}
                     >
                         Change Colour
-                    </button>
+                    </motion.button>
                 </div>
+
                 <BreakLine />
             </div>
         </div>
