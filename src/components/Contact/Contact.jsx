@@ -21,9 +21,9 @@ const Contact = () => {
     // Helper validation function
     const validateForm = () => {
         const errors = [];
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
         if (!formData.name.trim()) errors.push("Name is required");
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         if (!emailRegex.test(formData.email)) errors.push("Enter a valid email");
         if (!formData.message.trim()) errors.push("Message cannot be empty");
 
@@ -31,27 +31,22 @@ const Contact = () => {
         if (errors.length > 0) {
             errors.forEach((err, idx) => {
                 setTimeout(() => {
-                    const toastId = toast.error(
+                    console.log(toast);
+                    toast.error((t) => (
                         <div
-                            onClick={() => {
-                                console.log("Toast clicked:", err);
-                                toast.dismiss(toastId);
-                            }}
-                            style={{
-                                cursor: "pointer",
-                                userSelect: "none",
-                            }}
+                            className="w-full text-center select-none cursor-pointer"
+                            onClick={() => toast.dismiss(t.id)}
                         >
                             {err}
-                        </div>,
+                        </div>
+                    ),
                         {
                             duration: 3000,
                             style: {
                                 background: "#fff",
                                 color: "#000",
                                 fontSize: "14px",
-                                textAlign: "left",
-                                width: "250px",
+                                width: "250px", 
                             },
                         }
                     );
@@ -66,20 +61,7 @@ const Contact = () => {
     const formSubmit = async (e) => {
         e.preventDefault();
 
-        const validation = validateForm();
-
-        if (validation.hasError) {
-            // Show validation errors
-            const firstInvalidInput = document.querySelector('.form-control');
-            const errorDiv = document.createElement('div');
-            errorDiv.className = 'error-message text-red-600 text-sm mb-2';
-            errorDiv.textContent = validation.errors.join(' • ');
-            firstInvalidInput.parentNode.insertBefore(errorDiv, firstInvalidInput);
-
-            // Scroll to first error
-            firstInvalidInput.scrollIntoView({ behavior: 'smooth', block: 'center' });
-            return;
-        }
+        if (validateForm().hasError) return;
 
         await toast.promise(
             fetch(localUrl, {
