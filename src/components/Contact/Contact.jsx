@@ -31,7 +31,6 @@ const Contact = () => {
         if (errors.length > 0) {
             errors.forEach((err, idx) => {
                 setTimeout(() => {
-                    console.log(toast);
                     toast.error((t) => (
                         <div
                             className="w-full text-center select-none cursor-pointer"
