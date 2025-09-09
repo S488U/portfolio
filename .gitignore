@@ -12,6 +12,7 @@ dist
 dist-ssr
 *.local
 .env
+.env.local
 
 # Editor directories and files
 .vscode/*
@@ -33,3 +34,5 @@ Dockerfile*
 
 # Ignore custom cursor for now.
 /public/images/cursor
+.vercel
+.vscode
