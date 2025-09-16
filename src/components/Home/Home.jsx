@@ -105,7 +105,7 @@ const Home = () => {
       {/* Reset Button */}
       {isResetVisible && (
         <motion.button
-          className="bg-black text-white rounded-full text-lg px-5 py-1 absolute bottom-2 right-2"
+          className="bg-black text-white rounded-full text-lg px-5 py-1 absolute bottom-2 right-2 cursor-pointer"
           onClick={handleReset}
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 1 }}
