@@ -13,7 +13,10 @@ const Projects = () => {
     };
 
     return (
-        <div id="project" className="w-full h-auto flex flex-col justify-around items-center overflow-hidden my-8 p-4">
+    <div
+      id="project"
+      className="w-full h-auto flex flex-col justify-around items-center overflow-hidden scroll-mt-18 md:scroll-mt-14 my-8 p-4"
+    >
             <div className="w-full max-w-5xl space-y-4">
                 <TextHeader text="Projects" />
                 <div

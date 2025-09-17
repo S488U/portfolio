@@ -82,7 +82,7 @@ const Contact = () => {
     };
 
     return (
-        <div id="contact" className="w-full max-h-fit flex flex-col justify-around items-center overflow-hidden my-8 p-4 pt-4 mt-12">
+        <div id="contact" className="w-full max-h-fit flex flex-col justify-around items-center overflow-hidden scroll-mt-18 md:scroll-mt-14 my-8 p-4 pt-4 mt-12">
             <div className="w-full max-w-5xl space-y-4">
                 <TextHeader text="Contact Me!" />
                 <div className="w-full grid grid-cols-1 md:grid-cols-2 gap-4">
