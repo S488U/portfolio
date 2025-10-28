@@ -40,7 +40,7 @@ const ProjectCard = ({
           whileHover={{ scale: 1.08 }}
           whileTap={{ scale: 0.85 }}
         >
-          View
+          Read more..
         </motion.span>
       </div>
     </motion.div>
