@@ -33,6 +33,7 @@ const Home = () => {
 
   return (
     <div
+      id="home"
       ref={containerRef}
       className="w-full h-screen flex flex-col justify-center items-center gap-y-8 overflow-hidden"
     >
