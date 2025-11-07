@@ -12,7 +12,7 @@ const Navbar = () => {
       className='h-10 w-dvw flex justify-center align-center items-center mt-4 bg-transparent fixed z-9999'>
       <nav className='shadow-md flex justify-center align-center items-center gap-3 text-lg p-3 border-[3px] border-solid border-black bg-white rounded-full relative'>
         <a href="/" className='font-bold'>Portfolio</a>
-        <a href="/" className='text-red-500'>/</a>
+        <a href="#home" className='text-red-500'>/</a>
         <a href="#about" className='text-sm hover:text-green-600'>/About</a>
         <a href="#project" className='text-sm hover:text-green-600'>/Project</a>
         <a href="#contact" className='text-sm hover:text-green-600'>/Contacts</a>
