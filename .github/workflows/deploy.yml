@@ -3,7 +3,7 @@ name: Deploy Portfolio to Shared Hosting
 on:
   push:
     branches:
-      - ci-test
+      - main
 
 jobs:
   deploy:
