@@ -1,11 +1,31 @@
 import { marked } from "marked"
-import hljs from "highlight.js";
 import DOMPurify from "dompurify";
 import { html_beautify, css_beautify, js_beautify } from "js-beautify";
 
+import hljs from "highlight.js/lib/core";
+import javascript from "highlight.js/lib/languages/javascript";
+import css from "highlight.js/lib/languages/css";
+import xml from "highlight.js/lib/languages/xml";
+import json from "highlight.js/lib/languages/json";
+import bash from "highlight.js/lib/languages/bash";
+import python from "highlight.js/lib/languages/python";
+import typescript from "highlight.js/lib/languages/typescript";
+
+// Register languages
+hljs.registerLanguage("javascript", javascript);
+hljs.registerLanguage("js", javascript);
+hljs.registerLanguage("jsx", javascript);
+hljs.registerLanguage("css", css);
+hljs.registerLanguage("xml", xml);
+hljs.registerLanguage("html", xml);
+hljs.registerLanguage("json", json);
+hljs.registerLanguage("bash", bash);
+hljs.registerLanguage("python", python);
+hljs.registerLanguage("typescript", typescript);
+
 const formatCode = (code, lang) => {
     const lowerLang = lang.toLowerCase();
-    const jsLangs = ["javascript", "js", "json", "node", "react", "jsx", "ts", "typescript"];
+    const jsLangs = ["javascript", "js", "json", "node", "react", "jsx", "typescript"];
     const htmlLangs = ["html", "xml", "markup"];
     const cssLangs = ["css", "scss", "less"];
     const indentSize = 2;
@@ -39,7 +59,13 @@ marked.use({
             const lang = token.lang || "plaintext";
             const formattedCode = formatCode(token.text, lang);
             const language = hljs.getLanguage(lang) ? lang : "plaintext";
-            const highlightedCode = hljs.highlight(formattedCode, { language }).value;
+
+            let highlightedCode;
+            try {
+                highlightedCode = hljs.highlight(formattedCode, { language }).value;
+            } catch (error) {
+                highlightedCode = formattedCode;
+            }
 
             return `<pre><code class="hljs language-${language} remove-scroll">${highlightedCode}</code></pre>\n`;
         },
