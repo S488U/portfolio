@@ -24,6 +24,8 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+.vercel
+.vscode
 
 # docker build files
 .dockerignore
@@ -34,5 +36,4 @@ Dockerfile*
 
 # Ignore custom cursor for now.
 /public/images/cursor
-.vercel
-.vscode
+/public/images/projects
