@@ -1,5 +1,4 @@
 import { motion, AnimatePresence } from "framer-motion";
-import { X } from "lucide-react";
 import PropTypes from "prop-types";
 import { useEffect } from "react";
 import Technology from "./Technology.jsx";
@@ -57,10 +56,10 @@ const Modal = ({ show, onClose, data }) => {
                 onClick={onClose}
                 whileHover={{ scale: 1.15 }}
                 whileTap={{ scale: 0.85 }}
-                className="bg-black p-1 rounded-full hover:bg-red-500 cursor-pointer outline-3 outline-white"
+                className=" h-[20px] w-[20px] sm:w-[28px] sm:h-[28px] font-medium sm:font-light text-xs sm:text-lg bg-black text-white rounded-full flex justify-center items-center hover:bg-red-500 cursor-pointer outline-3 outline-white"
                 aria-label="close"
               >
-                <X size={17} className="text-white" />
+                &#x2715;
               </motion.div>
             </div>
 
