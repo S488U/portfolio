@@ -1,18 +1,44 @@
-import { useState } from "react";
+import { lazy, Suspense, useState, useRef, useEffect } from "react";
 import { motion } from "framer-motion";
 import TextHeader from "../Elements/TextHeader";
 import ProjectCard from "../Elements/ProjectCard";
-import Modal from "../Elements/Modal.jsx";
 import Data from "../Data/Data.json";
 import BreakLine from "../Elements/BreakLine";
 import useRandomColors from "../../hooks/useRandomColors";
+
+const importModal = () => import("../Elements/Modal.jsx");
+
+const Modal = lazy(importModal);
 
 const Projects = () => {
   const [reloadKey, setReloadKey] = useState(0);
   const [showModal, setShowModal] = useState(false);
   const [selectedProject, setSelectedProject] = useState(null);
+  const [isPrefetched, setIsPrefetched] = useState(false);
 
+  const sectionRef = useRef(null);
   const bgColors = useRandomColors(Data.projects.length, reloadKey);
+
+  useEffect(() => {
+    if (isPrefetched || !sectionRef.current) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          importModal();
+          setIsPrefetched(true);
+          observer.disconnect();
+        }
+      },
+      {
+        rootMargin: "150px",
+      }
+    );
+
+    observer.observe(sectionRef.current);
+
+    return () => observer.disconnect();
+  }, [isPrefetched]);
 
   const reload = () => setReloadKey((prev) => prev + 1);
 
@@ -25,6 +51,7 @@ const Projects = () => {
     <div
       id="project"
       className="w-full h-auto flex flex-col justify-around items-center overflow-hidden scroll-mt-18 md:scroll-mt-14 my-8 p-4"
+      ref={sectionRef}
     >
       <div className="w-full max-w-5xl space-y-4">
         <TextHeader text="Projects" />
@@ -72,11 +99,15 @@ const Projects = () => {
         <BreakLine />
       </div>
 
-      <Modal
-        show={showModal}
-        onClose={() => setShowModal(false)}
-        data={selectedProject || {}}
-      />
+      {showModal && (
+        <Suspense fallback={null}>
+          <Modal
+            show={showModal}
+            onClose={() => setShowModal(false)}
+            data={selectedProject || {}}
+          />
+        </Suspense>
+      )}
     </div>
   );
 };
