@@ -86,7 +86,7 @@ const Modal = ({ show, onClose, data }) => {
                     />
                   ))}
                 </div>
-                <Render id={data.id} />
+                <Render content={data.brief || ""} />
               </div>
               <div className="h-[1px]"></div>
             </div>
@@ -107,6 +107,7 @@ Modal.propTypes = {
     image: PropTypes.string,
     hosted: PropTypes.string,
     technologies: PropTypes.array,
+    brief: PropTypes.string,
     url: PropTypes.objectOf(
       PropTypes.shape({
         link: PropTypes.string.isRequired,
