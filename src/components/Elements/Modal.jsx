@@ -3,12 +3,9 @@ import PropTypes from "prop-types";
 import { useEffect } from "react";
 import Technology from "./Technology.jsx";
 import Render from "./Render.jsx";
-import Data from "../Data/Data.json";
 import Button from "./Button";
 
 const Modal = ({ show, onClose, data }) => {
-  let technologiesArray, urlsArray;
-
   useEffect(() => {
     const scrollbarWidth =
       window.innerWidth - document.documentElement.clientWidth;
@@ -27,14 +24,8 @@ const Modal = ({ show, onClose, data }) => {
     };
   }, [show]);
 
-  const project = Data.projects.find((p) => p.id === data.id);
-  if (project) {
-    technologiesArray = project.technologies;
-    urlsArray = Object.entries(project.url);
-  } else {
-    technologiesArray = ["No Technology specified"];
-    urlsArray = [];
-  }
+  const technologiesArray = data.technologies || ["No Technology specified"];
+  const urlsArray = data.url ? Object.entries(data.url) : [];
 
   return (
     <AnimatePresence>
@@ -115,6 +106,7 @@ Modal.propTypes = {
     desc: PropTypes.string,
     image: PropTypes.string,
     hosted: PropTypes.string,
+    technologies: PropTypes.array,
     url: PropTypes.objectOf(
       PropTypes.shape({
         link: PropTypes.string.isRequired,
