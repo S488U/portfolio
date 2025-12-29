@@ -1,14 +1,34 @@
-import { lazy, Suspense, useState, useRef, useEffect } from "react";
+import {
+  lazy,
+  Suspense,
+  useState,
+  useRef,
+  useEffect,
+  useCallback,
+} from "react";
 import { motion } from "framer-motion";
 import TextHeader from "../Elements/TextHeader";
 import ProjectCard from "../Elements/ProjectCard";
 import Data from "../Data/Data.json";
 import BreakLine from "../Elements/BreakLine";
 import useRandomColors from "../../hooks/useRandomColors";
+import e from "cors";
 
 const importModal = () => import("../Elements/Modal.jsx");
 
 const Modal = lazy(importModal);
+
+const getProjectSlug = (project) => {
+  if (project.slug) {
+    return String(project.slug).toLowerCase();
+  }
+
+  return project.heading
+    .toLowerCase()
+    .trim()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "");
+};
 
 const Projects = () => {
   const [reloadKey, setReloadKey] = useState(0);
@@ -40,12 +60,80 @@ const Projects = () => {
     return () => observer.disconnect();
   }, [isPrefetched]);
 
-  const reload = () => setReloadKey((prev) => prev + 1);
+  const findProjectBySlug = useCallback((slug) => {
+    const index = Data.projects.findIndex((p) => getProjectSlug(p) === slug);
+    if (index !== -1) {
+      return { project: Data.projects[index], index };
+    }
+
+    return null;
+  }, []);
+
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const slug = params.get("project");
+
+    if (slug) {
+      const match = findProjectBySlug(slug);
+
+      if (match) {
+        // If not loaded the Modal code. we load it fast to ensure the working of slug.
+        if (!isPrefetched) {
+          importModal();
+          setIsPrefetched(true);
+        }
+
+        setSelectedProject({
+          ...match.project,
+          bgColor: bgColors[match.index],
+        });
+
+        setShowModal(true);
+      }
+
+      if (sectionRef.current) {
+        sectionRef.current.scrollIntoView({ behavior: "smooth" });
+      }
+    }
+
+    const handlePopState = () => {
+      const currentParams = new URLSearchParams(window.location.search);
+      const currentSlug = currentParams.get("project");
+
+      if (currentSlug) {
+        const match = findProjectBySlug(currentSlug);
+        if (match) {
+          setSelectedProject({
+            ...match.project,
+            bgColor: bgColors[match.index],
+          });
+
+          setShowModal(true);
+        }
+      } else {
+        setShowModal(false);
+      }
+    };
+
+    window.addEventListener("popstate", handlePopState);
+    return () => window.removeEventListener("popstate", handlePopState);
+  }, [bgColors, findProjectBySlug, isPrefetched]);
 
   const handleView = (project, color) => {
     setSelectedProject({ ...project, bgColor: color });
     setShowModal(true);
+
+    const slug = getProjectSlug(project);
+    const newUrl = `${window.location.pathname}?project=${slug}`;
+    window.history.pushState({ path: newUrl }, "", newUrl);
   };
+
+  const handleClose = () => {
+    setShowModal(false);
+    window.history.pushState({}, "", window.location.pathname);
+  };
+
+  const reload = () => setReloadKey((prev) => prev + 1);
 
   return (
     <div
@@ -103,7 +191,7 @@ const Projects = () => {
         <Suspense fallback={null}>
           <Modal
             show={showModal}
-            onClose={() => setShowModal(false)}
+            onClose={handleClose}
             data={selectedProject || {}}
           />
         </Suspense>
