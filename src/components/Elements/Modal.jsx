@@ -39,7 +39,7 @@ const Modal = ({ show, onClose, data }) => {
         >
           <motion.div
             layoutId={`modal-${data.id}`}
-            className="bg-white w-[95%] md:w-[90%] h-[88%] overflow-y-auto remove-scroll mt-[4.5em] mb-[0.5em] rounded-2xl py-2 px-2 p-md-6  z-[60] relative"
+            className="bg-white w-[95%] md:w-[90%] h-[88%] overflow-y-auto remove-scroll mt-[4.5em] mb-[0.5em] rounded-2xl py-2 px-2 p-md-6  z-60 relative"
             onClick={(e) => e.stopPropagation()}
           >
             <div className="absolute right-2 top-2" onClick={onClose}>
@@ -47,14 +47,14 @@ const Modal = ({ show, onClose, data }) => {
                 onClick={onClose}
                 whileHover={{ scale: 1.15 }}
                 whileTap={{ scale: 0.85 }}
-                className=" h-[20px] w-[20px] sm:w-[28px] sm:h-[28px] font-medium sm:font-light text-xs sm:text-lg bg-black text-white rounded-full flex justify-center items-center hover:bg-red-500 cursor-pointer outline-3 outline-white"
+                className=" h-5 w-5 sm:w-7 sm:h-7 font-medium sm:font-light text-xs sm:text-lg bg-black text-white rounded-full flex justify-center items-center hover:bg-red-500 cursor-pointer outline-3 outline-white"
                 aria-label="close"
               >
                 &#x2715;
               </motion.div>
             </div>
 
-            <div className="w-full h-full p-1 @container">
+            <div className="w-full h-full @container">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                 <div
                   style={{ backgroundColor: data.bgColor || "#E0F2F1" }}
@@ -88,7 +88,7 @@ const Modal = ({ show, onClose, data }) => {
                 </div>
                 <Render content={data.brief || ""} />
               </div>
-              <div className="h-[1px]"></div>
+              <div className="h-px"></div>
             </div>
           </motion.div>
         </motion.div>
