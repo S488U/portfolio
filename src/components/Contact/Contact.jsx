@@ -113,7 +113,7 @@ const Contact = () => {
                     {/* Mail Column */}
                     <div className="order-1 md:order-2 mt-2 bg-white text-black p-3 pb-5">
                         <h1 className="font-medium text-2xl font-nature pt-4 px-2">Mail me from the web:</h1>
-                        <form onSubmit={formSubmit} className="flex flex-col mt-5 gap-y-3 w-[300px] ml-0 md:ml-16">
+                        <form onSubmit={formSubmit} className="flex flex-col mt-5 gap-y-3 w-75 ml-0 md:ml-16">
                             <div className="flex flex-col justify-start items-start form-control">
                                 <label className="text-grey text-sm" htmlFor="name">Enter your name:</label>
                                 <input name="name" id="name" type="text" className="text-black text-lg border-4 border-black focus:outline-hidden px-3 py-2 w-full" value={formData.name} onChange={handleChange} autoCapitalize="on"spellCheck="false" />
