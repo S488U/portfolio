@@ -6,6 +6,7 @@ import { toast } from "react-hot-toast";
 import { motion } from "framer-motion";
 
 const Contact = () => {
+    const [isSubmit, setIsSubmit] = useState(true);
     const [formData, setFormData] = useState({
         name: "",
         email: "",
@@ -61,7 +62,10 @@ const Contact = () => {
     const formSubmit = async (e) => {
         e.preventDefault();
 
+        if(!isSubmit) return;
         if (validateForm().hasError) return;
+
+        setIsSubmit(false);
 
         await toast.promise(
             fetch(localUrl, {
@@ -78,7 +82,9 @@ const Contact = () => {
                 success: "Message sent successfully! 🎉",
                 error: "Could not send message. Try again!",
             }
-        );
+        ).finally(() => {
+              setIsSubmit(true);
+        });
     };
 
     return (
@@ -127,7 +133,7 @@ const Contact = () => {
                                 <textarea name="message" id="message" className="text-black text-lg border-4 border-black focus:outline-hidden px-3 py-2 w-full" value={formData.message} onChange={handleChange} spellCheck="false"></textarea>
                             </div>
                             <div className="flex flex-col justify-start items-start">
-                                <motion.input layout whileHover={{ backgroundColor: "#080808" }} type="submit" value="send" className="font-nature text-white bg-black text-lg border-4 border-black focus:outline-hidden px-3 py-2 w-full cursor-pointer" aria-label="Send your message" />
+                                <motion.input layout disabled={!isSubmit} type="submit" value="send" className={`font-naturebg text-lg border-4 focus:outline-hidden px-3 py-2 w-full transition-colors duration-200 ${isSubmit ? "text-white  bg-black border-black cursor-pointer" : "text-zinc-200 bg-zinc-700 border-zinc-700 cursor-not-allowed"}`} aria-label="Send your message" />
                             </div>
                         </form>
                     </div>
