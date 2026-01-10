@@ -131,7 +131,7 @@ html {
 }
 
 .prose a:has(img) {
-  @apply relative block aspect-[5/3] max-w-md mx-auto overflow-hidden rounded-lg border bg-black md:ml-52 my-3;
+  @apply relative block aspect-5/3 max-w-md mx-auto overflow-hidden rounded-lg border bg-black md:ml-52 my-3;
 }
 
 .prose a img {
@@ -150,7 +150,7 @@ html {
 .prose pre {
   scrollbar-width: none;
   -ms-overflow-style: none;
-  @apply md:ml-52 whitespace-pre min-w-auto max-w-[450px] h-auto md:text-lg my-2 p-0;
+  @apply md:ml-52 whitespace-pre min-w-auto max-w-112.5 h-auto md:text-lg my-2 p-0;
 
   code {
     background: transparent;
