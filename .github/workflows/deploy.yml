@@ -16,7 +16,7 @@ jobs:
         with:
           node-version: 20
 
-      - run: npm install
+      - run: npm ci
       - run: npm run build
 
       - name: Upload build via FTP
