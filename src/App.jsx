@@ -1,7 +1,7 @@
-import { lazy, Suspense, useEffect } from "react";
+import { lazy, Suspense, useEffect, useState } from "react";
 import { Toaster } from "react-hot-toast";
 
-import useGpuAvailable from "./hooks/useGpuAvailable.js";
+import getGpuInfo from "./utils/getGpuInfo.js";
 
 import Loader from "./components/Elements/Loader.jsx";
 import Navbar from "./components/Navbar/Navbar.jsx";
@@ -13,7 +13,8 @@ const Contact = lazy(() => import("./components/Contact/Contact.jsx"));
 const Footer = lazy(() => import("./components/Footer/Footer.jsx"));
 
 const App = () => {
-  const { available, name } = useGpuAvailable();
+  const [gpuInfo] = useState(() => getGpuInfo());
+  const { available, name } = gpuInfo;
 
   useEffect(() => {
     if (available === true) {
