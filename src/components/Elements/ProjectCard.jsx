@@ -14,17 +14,17 @@ const ProjectCard = ({
   return (
     <motion.div
       layoutId={`modal-${id}`}
-      className="border border-grey rounded-lg p-1 h-[250px] shadow-lg cursor-pointer"
+      className="border border-grey rounded-lg p-1 h-62.5 shadow-lg cursor-pointer"
       onClick={() => onView({ heading, desc, image, hosted, id, url })}
     >
       <div
-        className="w-full h-[170px] rounded-lg flex flex-col justify-center items-start text-lg pl-5"
+        className="w-full h-42.5 rounded-lg flex flex-col justify-center items-start text-lg pl-5"
         style={{ backgroundColor: bgColor || "#E0F2F1" }}
       >
         <h1 className="text-4xl font-nature">{heading}</h1>
         <p className="font-nature">{desc}</p>
       </div>
-      <div className="w-full bg-grey-800 h-[65px] flex flex-row justify-around items-center">
+      <div className="w-full bg-grey-800 h-16.25 flex flex-row justify-around items-center">
         <div className="flex flex-row gap-2 justify-center items-center">
           <img
             className="aspect-square object-contain"
@@ -33,7 +33,7 @@ const ProjectCard = ({
             width="45"
             alt={hosted}
           />
-          <p className="max-w-[100px] text-sm">{hosted}</p>
+          <p className="max-w-25 text-sm">{hosted}</p>
         </div>
         <motion.span
           className="bg-black text-white rounded-full p-1 px-5"
