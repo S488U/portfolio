@@ -4,7 +4,6 @@ import {
   useState,
   useRef,
   useEffect,
-  useCallback,
 } from "react";
 import { motion } from "framer-motion";
 import TextHeader from "../Elements/TextHeader";
@@ -29,14 +28,50 @@ const getProjectSlug = (project) => {
     .replace(/^-+|-+$/g, "");
 };
 
+const findProjectBySlug = (slug) => {
+  const index = Data.projects.findIndex((p) => getProjectSlug(p) === slug);
+  if (index !== -1) return { project: Data.projects[index], index };
+
+  return null;
+};
+
 const Projects = () => {
   const [reloadKey, setReloadKey] = useState(0);
-  const [showModal, setShowModal] = useState(false);
-  const [selectedProject, setSelectedProject] = useState(null);
-
-  const hasPrefetched = useRef(false);
-  const sectionRef = useRef(null);
   const bgColors = useRandomColors(Data.projects.length, reloadKey);
+
+  const [selectedProject, setSelectedProject] = useState(() => {
+    if (typeof window !== "undefined") {
+      const params = new URLSearchParams(window.location.search);
+      const slug = params.get("project");
+
+      if (slug) {
+        const match = findProjectBySlug(slug);
+
+        if (match) {
+          importModal();
+
+          return {
+            ...match.project,
+            bgColor: bgColors[match.index],
+          };
+        }
+      }
+    }
+    return null;
+  });
+
+  const [showModal, setShowModal] = useState(!!selectedProject);
+
+  const hasPrefetched = useRef(!!selectedProject);
+  const sectionRef = useRef(null);
+
+  useEffect(() => {
+    if (selectedProject && sectionRef.current)
+      sectionRef.current.scrollIntoView({ behavior: "smooth" });
+
+    // We only want this to run on mount (initial load), not on every state change.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   useEffect(() => {
     if (hasPrefetched.current || !sectionRef.current) return;
@@ -59,41 +94,7 @@ const Projects = () => {
     return () => observer.disconnect();
   }, []);
 
-  const findProjectBySlug = useCallback((slug) => {
-    const index = Data.projects.findIndex((p) => getProjectSlug(p) === slug);
-    if (index !== -1) {
-      return { project: Data.projects[index], index };
-    }
-
-    return null;
-  }, []);
-
   useEffect(() => {
-    const params = new URLSearchParams(window.location.search);
-    const slug = params.get("project");
-
-    if (slug) {
-      const match = findProjectBySlug(slug);
-
-      if (match) {
-        if (!hasPrefetched.current) {
-          importModal();
-          hasPrefetched.current = true;
-        }
-
-        setSelectedProject({
-          ...match.project,
-          bgColor: bgColors[match.index],
-        });
-
-        setShowModal(true);
-      }
-
-      if (sectionRef.current) {
-        sectionRef.current.scrollIntoView({ behavior: "smooth" });
-      }
-    }
-
     const handlePopState = () => {
       const currentParams = new URLSearchParams(window.location.search);
       const currentSlug = currentParams.get("project");
@@ -101,12 +102,14 @@ const Projects = () => {
       if (currentSlug) {
         const match = findProjectBySlug(currentSlug);
         if (match) {
-          setSelectedProject({
-            ...match.project,
-            bgColor: bgColors[match.index],
-          });
+          requestAnimationFrame(() => {
+            setSelectedProject({
+              ...match.project,
+              bgColor: bgColors[match.index],
+            });
 
-          setShowModal(true);
+            setShowModal(true);
+          });
         }
       } else {
         setShowModal(false);
@@ -115,7 +118,7 @@ const Projects = () => {
 
     window.addEventListener("popstate", handlePopState);
     return () => window.removeEventListener("popstate", handlePopState);
-  }, [bgColors, findProjectBySlug]);
+  }, [bgColors]);
 
   const handleView = (project, color) => {
     setSelectedProject({ ...project, bgColor: color });
