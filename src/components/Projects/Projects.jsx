@@ -33,19 +33,19 @@ const Projects = () => {
   const [reloadKey, setReloadKey] = useState(0);
   const [showModal, setShowModal] = useState(false);
   const [selectedProject, setSelectedProject] = useState(null);
-  const [isPrefetched, setIsPrefetched] = useState(false);
 
+  const hasPrefetched = useRef(false);
   const sectionRef = useRef(null);
   const bgColors = useRandomColors(Data.projects.length, reloadKey);
 
   useEffect(() => {
-    if (isPrefetched || !sectionRef.current) return;
+    if (hasPrefetched.current || !sectionRef.current) return;
 
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
           importModal();
-          setIsPrefetched(true);
+          hasPrefetched.current = true;
           observer.disconnect();
         }
       },
@@ -57,7 +57,7 @@ const Projects = () => {
     observer.observe(sectionRef.current);
 
     return () => observer.disconnect();
-  }, [isPrefetched]);
+  }, []);
 
   const findProjectBySlug = useCallback((slug) => {
     const index = Data.projects.findIndex((p) => getProjectSlug(p) === slug);
@@ -76,10 +76,9 @@ const Projects = () => {
       const match = findProjectBySlug(slug);
 
       if (match) {
-        // If not loaded the Modal code. we load it fast to ensure the working of slug.
-        if (!isPrefetched) {
+        if (!hasPrefetched.current) {
           importModal();
-          setIsPrefetched(true);
+          hasPrefetched.current = true;
         }
 
         setSelectedProject({
@@ -116,7 +115,7 @@ const Projects = () => {
 
     window.addEventListener("popstate", handlePopState);
     return () => window.removeEventListener("popstate", handlePopState);
-  }, [bgColors, findProjectBySlug, isPrefetched]);
+  }, [bgColors, findProjectBySlug]);
 
   const handleView = (project, color) => {
     setSelectedProject({ ...project, bgColor: color });
