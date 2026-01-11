@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useMemo } from "react";
 
 const getRandomMildColor = () => {
   // Base Value + Math.random() * Range
@@ -11,7 +11,7 @@ const getRandomMildColor = () => {
   return `hsl(${hue}, ${saturation}%, ${lightness}%)`;
 };
 
-const generateColors = n => {
+const generateColors = (n) => {
   const colorSet = new Set();
   let attempts = 0;
 
@@ -27,20 +27,9 @@ const generateColors = n => {
   return [...colorSet];
 };
 
-export default function useRandomColors(count, reloadKey) {
-  const [colors, setColors] = useState(() => generateColors(count));
-  const isFirstRender = useRef(true);
+const useRandomColors = (count, reloadKey) => {
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  return useMemo(() => generateColors(count), [count, reloadKey]);
+}
 
-  useEffect(() => {
-
-    if (isFirstRender.current) {
-      isFirstRender.current = false;
-      return;
-
-    }
-
-    setColors(generateColors(count));
-  }, [count, reloadKey]); // reloadKey triggers re-generation
-
-  return colors;
-}   
+export default useRandomColors;
