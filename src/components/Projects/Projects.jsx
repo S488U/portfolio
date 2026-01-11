@@ -12,7 +12,6 @@ import ProjectCard from "../Elements/ProjectCard";
 import Data from "../Data/Data.json";
 import BreakLine from "../Elements/BreakLine";
 import useRandomColors from "../../hooks/useRandomColors";
-import e from "cors";
 
 const importModal = () => import("../Elements/Modal.jsx");
 
