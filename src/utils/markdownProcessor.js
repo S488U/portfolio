@@ -63,7 +63,7 @@ marked.use({
             let highlightedCode;
             try {
                 highlightedCode = hljs.highlight(formattedCode, { language }).value;
-            } catch (error) {
+            } catch {
                 highlightedCode = formattedCode;
             }
 
