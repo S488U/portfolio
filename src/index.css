@@ -1,4 +1,4 @@
-@import 'tailwindcss';
+@import "tailwindcss";
 @plugin "@tailwindcss/typography";
 
 @theme {
@@ -18,7 +18,6 @@
 }
 
 @layer base {
-
   *,
   ::after,
   ::before,
@@ -32,16 +31,28 @@
   background: white;
   color: #000;
   scroll-behavior: smooth;
+
+  --code-bg: #fafafa;
+  --code-accent: #d6006b;
+
+  --blockquote-bg: rgb(255, 227, 241);
+
+  --selection-bg: #000000;
+  --selection-accend: #f1f1f1;
+
+  --scrollbar-accent: #000000;
+  --scrollbar-accent-hover: #0f0f0f;
+  --scrollbar-bg: #f1f1f1;
 }
 
 html {
   scrollbar-width: thin;
-  scrollbar-color: #000000 #f1f1f1;
+  scrollbar-color: var(--scrollbar-accent) var(--scrollbar-bg);
 }
 
 *::selection {
-  background-color: #000;
-  color: #ffff;
+  background-color: var(--selection-bg);
+  color: var(--selection-accend);
 }
 
 ::-webkit-scrollbar {
@@ -50,18 +61,18 @@ html {
 }
 
 ::-webkit-scrollbar-track {
-  background: #f1f1f1;
+  background: var(--scrollbar-accent);
   border-radius: 10px;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #000000;
+  background: var(--scrollbar-accent);
   border-radius: 10px;
-  border: 3px solid #f1f1f1;
+  border: 3px solid var(--scrollbar-bg);
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #000000;
+  background: var(--scrollbar-accent-hover);
 }
 
 .remove-scroll {
@@ -96,15 +107,9 @@ html {
 
 .prose {
   max-width: none;
-}
 
-.prose strong {
-  font-weight: 500;
-}
-
-.prose {
   * {
-    @apply leading-tight
+    @apply leading-tight;
   }
 
   h1,
@@ -113,12 +118,12 @@ html {
   h4,
   h5,
   h6 {
-    @apply my-1 font-semibold
+    @apply my-1 font-semibold;
   }
 
   ol,
   ul {
-    @apply m-0
+    @apply m-0;
   }
 
   p {
@@ -128,42 +133,55 @@ html {
   hr {
     margin-block: 20px;
   }
-}
 
-.prose a:has(img) {
-  @apply relative block aspect-5/3 max-w-md mx-auto overflow-hidden rounded-lg border bg-black md:ml-52 my-3;
-}
-
-.prose a img {
-  @apply w-full h-full object-contain object-center transition-transform duration-300 hover:scale-102 m-0;
-}
-
-.prose code:not(pre > code) {
-  background-color: #fafafa;
-  color: #d6006b;
-  padding: 0.2em 0.4em;
-  margin: 0;
-  font-size: 85%;
-  border-radius: 3px;
-}
-
-.prose pre {
-  scrollbar-width: none;
-  -ms-overflow-style: none;
-  @apply md:ml-52 whitespace-pre min-w-auto max-w-112.5 h-auto md:text-lg my-2 p-0;
-
-  code {
-    background: transparent;
+  strong {
+    font-weight: 500;
   }
-}
 
-.prose pre::-webkit-scrollbar,
-.prose pre code::-webkit-scrollbar {
-  display: none !important;
-  scrollbar-width: none !important;
-}
+  a:has(img) {
+    @apply relative block aspect-5/3 max-w-md mx-auto overflow-hidden rounded-lg border bg-black md:ml-52 my-3;
+  }
 
-.prose code:not(pre > code)::before,
-.prose code:not(pre > code)::after {
-  content: none;
+  a img {
+    @apply w-full h-full object-contain object-center transition-transform duration-300 hover:scale-102 m-0;
+  }
+
+  code:not(pre > code) {
+    background-color: var(--code-bg);
+    color: var(--code-accent);
+    padding: 0.2em 0.4em;
+    margin: 0;
+    font-size: 85%;
+    border-radius: 3px;
+  }
+
+  code:not(pre > code)::before,
+  code:not(pre > code)::after {
+    content: none;
+  }
+
+  pre {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    @apply md:ml-52 whitespace-pre min-w-auto max-w-112.5 h-auto md:text-lg my-2 p-0;
+
+    code {
+      background: transparent;
+    }
+  }
+
+  pre::-webkit-scrollbar,
+  pre code::-webkit-scrollbar {
+    display: none !important;
+    scrollbar-width: none !important;
+  }
+
+  blockquote {
+    background-color: var(--code-bg);
+    border-color: var(--code-accent);
+    border-radius: 3px;
+    padding: 0.3rem 0.5rem;
+    margin-block: 0.7rem;
+    font-style: italic;
+  }
 }
