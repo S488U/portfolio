@@ -1,4 +1,4 @@
-import { motion, useAnimation } from "framer-motion";
+import { AnimatePresence, motion, useAnimation } from "framer-motion";
 import { useRef, useState } from "react";
 
 const Home = () => {
@@ -88,19 +88,21 @@ const Home = () => {
       />
 
       {/* Reset Button */}
-      {isMoved && (
-        <motion.button
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: 20 }}
-          className="bg-black text-white rounded-full text-lg px-5 py-1 absolute bottom-2 right-2 cursor-pointer z-50"
-          onClick={handleReset}
-          whileHover={{ scale: 1.05 }}
-          whileTap={{ scale: 0.95 }}
-        >
-          Reset
-        </motion.button>
-      )}
+      <AnimatePresence>
+        {isMoved && (
+          <motion.button
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: 20 }}
+            className="bg-black text-white rounded-full text-lg px-5 py-1 absolute bottom-2 right-2 cursor-pointer z-50"
+            onClick={handleReset}
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+          >
+            Reset
+          </motion.button>
+        )}
+      </AnimatePresence>
     </div>
   );
 };
