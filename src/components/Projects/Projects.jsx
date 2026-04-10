@@ -4,6 +4,7 @@ import {
   useState,
   useRef,
   useEffect,
+  useCallback,
 } from "react";
 import { motion } from "framer-motion";
 import TextHeader from "../Elements/TextHeader";
@@ -69,7 +70,6 @@ const Projects = () => {
     if (selectedProject && sectionRef.current)
       sectionRef.current.scrollIntoView({ behavior: "smooth" });
 
-    // We only want this to run on mount (initial load), not on every state change.
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -86,7 +86,7 @@ const Projects = () => {
       },
       {
         rootMargin: "150px",
-      }
+      },
     );
 
     observer.observe(sectionRef.current);
@@ -120,21 +120,21 @@ const Projects = () => {
     return () => window.removeEventListener("popstate", handlePopState);
   }, [bgColors]);
 
-  const handleView = (project, color) => {
+  const handleView = useCallback((project, color) => {
     setSelectedProject({ ...project, bgColor: color });
     setShowModal(true);
 
     const slug = getProjectSlug(project);
     const newUrl = `${window.location.pathname}?project=${slug}`;
     window.history.pushState({ path: newUrl }, "", newUrl);
-  };
+  }, []);
 
-  const handleClose = () => {
+  const handleClose = useCallback(() => {
     setShowModal(false);
     window.history.pushState({}, "", window.location.pathname);
-  };
+  }, []);
 
-  const reload = () => setReloadKey((prev) => prev + 1);
+  const reload = useCallback(() => setReloadKey((prev) => prev + 1), []);
 
   return (
     <div
@@ -145,13 +145,7 @@ const Projects = () => {
       <div className="w-full max-w-5xl space-y-4">
         <TextHeader text="Projects" />
 
-        <motion.div
-          id="reload"
-          key={reloadKey}
-          layout
-          style={{ willChange: "transform", transform: "translateZ(0)" }}
-          className="w-auto grid grid-cols-1 sx-grid-cols-2 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-4"
-        >
+        <div className="w-auto grid grid-cols-1 sx-grid-cols-2 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-4">
           {Data.projects.map((item, index) => {
             if (item.ready === true)
               return (
@@ -168,7 +162,7 @@ const Projects = () => {
                 />
               );
           })}
-        </motion.div>
+        </div>
 
         <div className="flex flex-col justify-center items-center text-center ">
           <p className="text-sm text-grey mt-3">

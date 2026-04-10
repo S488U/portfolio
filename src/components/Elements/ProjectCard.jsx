@@ -1,3 +1,4 @@
+import { memo } from "react";
 import { motion } from "framer-motion";
 import PropTypes from "prop-types";
 
@@ -15,7 +16,7 @@ const ProjectCard = ({
     <motion.div
       layoutId={`modal-${id}`}
       className="border border-grey rounded-lg p-1 h-62.5 shadow-lg cursor-pointer"
-      onClick={() => onView({ heading, desc, image, hosted, id, url })}
+      onClick={() => onView()}
     >
       <div
         className="w-full h-42.5 rounded-lg flex flex-col justify-center items-start text-lg pl-5"
@@ -54,14 +55,14 @@ ProjectCard.propTypes = {
   hosted: PropTypes.string.isRequired,
   onView: PropTypes.func.isRequired,
   id: PropTypes.number.isRequired,
-  bgColor: PropTypes.string, // new prop
+  bgColor: PropTypes.string,
   url: PropTypes.objectOf(
     PropTypes.shape({
       link: PropTypes.string.isRequired,
       bg: PropTypes.string,
       color: PropTypes.string,
-    })
+    }),
   ),
 };
 
-export default ProjectCard;
+export default memo(ProjectCard);

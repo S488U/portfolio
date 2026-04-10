@@ -37,12 +37,12 @@ const Modal = ({ show, onClose, data }) => {
 
   const technologiesArray = useMemo(
     () => data?.technologies || ["No Technology specified"],
-    [data?.technologies]
+    [data?.technologies],
   );
 
   const urlsArray = useMemo(
     () => (data?.url ? Object.entries(data.url) : []),
-    [data?.url]
+    [data?.url],
   );
 
   if (typeof document === "undefined") return null;
@@ -50,7 +50,7 @@ const Modal = ({ show, onClose, data }) => {
   return createPortal(
     <AnimatePresence>
       {show && (
-        // Background color - Parent Modal
+        // Backdrop
         <motion.div
           className="fixed top-0 left-0 w-full h-full bg-black/60 z-50 flex justify-center items-center"
           onClick={onClose}
@@ -60,7 +60,6 @@ const Modal = ({ show, onClose, data }) => {
           role="dialog"
           aria-modal="true"
         >
-          {/* Content Modal  */}
           <motion.div
             className="bg-white w-[95%] md:w-[90%] h-[88%] overflow-y-auto remove-scroll mt-[4.5em] mb-[0.5em] rounded-2xl py-2 px-2 p-md-6 z-60 relative"
             onClick={(e) => e.stopPropagation()}
@@ -81,7 +80,6 @@ const Modal = ({ show, onClose, data }) => {
 
             <div className="w-full h-full @container">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-
                 {/* Heading and Description  */}
                 <div
                   style={{ backgroundColor: data.bgColor || "#E0F2F1" }}
@@ -126,7 +124,7 @@ const Modal = ({ show, onClose, data }) => {
         </motion.div>
       )}
     </AnimatePresence>,
-    document.body
+    document.body,
   );
 };
 
