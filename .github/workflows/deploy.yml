@@ -19,7 +19,14 @@ jobs:
       - run: npm ci
       - run: npm run build
 
+      - name: Check server availability
+        id: server-check
+        run: |
+          curl --silent --fail ftp://${{ secrets.FTP_HOST }} || exit 0
+        continue-on-error: true
+
       - name: Upload build via FTP
+        if: steps.server-check.outcome == 'success'
         uses: SamKirkland/FTP-Deploy-Action@v4.3.4
         with:
           server: ${{ secrets.FTP_HOST }}
