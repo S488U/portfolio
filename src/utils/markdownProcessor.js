@@ -42,12 +42,9 @@ const formatCode = (code, lang) => {
     return code;
 };
 
-marked.setOptions({
+marked.use({
     gfm: true,
     breaks: true,
-});
-
-marked.use({
     renderer: {
         link(token) {
             return `<a href="${token.href}" target="_blank" rel="noopener noreferrer">${token.text}</a>`;
